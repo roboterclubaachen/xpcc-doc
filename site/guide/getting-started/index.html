@@ -368,8 +368,8 @@ Make sure you have either our <a href="../../installation">virtual machine or th
 to compile and program your targets.</p>
 <h2 id="your-own-project">Your own project<a class="headerlink" href="#your-own-project" title="Permanent link">#</a></h2>
 <p>Start your own project by cloning <a href="https://github.com/roboterclubaachen/getting-started-with-xpcc">our <code>getting-started</code> project</a> from GitHub:</p>
-<div class="code"><pre>git clone --recursive https://github.com/roboterclubaachen/getting-started-with-xpcc.git
-<span class="nb">cd </span>getting-started-with-xpcc
+<div class="code"><pre><span></span>git clone --recursive https://github.com/roboterclubaachen/getting-started-with-xpcc.git
+<span class="nb">cd</span> getting-started-with-xpcc
 tree
 .
 ├── LICENSE
@@ -387,7 +387,7 @@ tree
 to enable use of <a href="../../installation/#virtual-machine">our virtual machine</a>,
 a <code>SConstruct</code> file for <a href="../../reference/build-system/#build-commands">our build system</a>,
 a project configuration file and of course the source code:</p>
-<div class="code"><pre><span class="cp">#include &lt;xpcc/architecture/platform.hpp&gt;</span>
+<div class="code"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;xpcc/architecture/platform.hpp&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -410,7 +410,7 @@ a project configuration file and of course the source code:</p>
 
 <p>You can change the development board for which you want to compile the example
 for in the <code>project.cfg</code> file:</p>
-<div class="code"><pre><span class="k">[build]</span>
+<div class="code"><pre><span></span><span class="k">[build]</span>
 <span class="na">board</span> <span class="o">=</span> <span class="s">stm32f4_discovery</span>
 <span class="c1">#board = arduino_uno</span>
 <span class="c1">#board = nucleo_f103rb</span>
@@ -427,10 +427,10 @@ for in the <code>project.cfg</code> file:</p>
 <code>SConstruct</code> to point to the location of the xpcc framework.
 Note that this allows you to use different versions of the xpcc frameworks
 (your own fork?) for your projects.</p>
-<div class="code"><pre><span class="c"># path to the xpcc root directory (modify as needed!)</span>
-<span class="n">xpccpath</span> <span class="o">=</span> <span class="s">&#39;../xpcc&#39;</span>
-<span class="c"># execute the common SConstruct file</span>
-<span class="nb">execfile</span><span class="p">(</span><span class="n">xpccpath</span> <span class="o">+</span> <span class="s">&#39;/scons/SConstruct&#39;</span><span class="p">)</span>
+<div class="code"><pre><span></span><span class="c1"># path to the xpcc root directory (modify as needed!)</span>
+<span class="n">xpccpath</span> <span class="o">=</span> <span class="s1">&#39;../xpcc&#39;</span>
+<span class="c1"># execute the common SConstruct file</span>
+<span class="nb">execfile</span><span class="p">(</span><span class="n">xpccpath</span> <span class="o">+</span> <span class="s1">&#39;/scons/SConstruct&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -438,7 +438,7 @@ Note that this allows you to use different versions of the xpcc frameworks
 <p>All of this code works the same on all platforms, however, the pin and module
 names may need to be adapted.</p>
 <h3 id="gpio">GPIO<a class="headerlink" href="#gpio" title="Permanent link">#</a></h3>
-<div class="code"><pre><span class="k">using</span> <span class="n">Led</span> <span class="o">=</span> <span class="n">GpioOutputB0</span><span class="p">;</span>
+<div class="code"><pre><span></span><span class="k">using</span> <span class="n">Led</span> <span class="o">=</span> <span class="n">GpioOutputB0</span><span class="p">;</span>
 <span class="n">Led</span><span class="o">::</span><span class="n">setOutput</span><span class="p">();</span>
 <span class="n">Led</span><span class="o">::</span><span class="n">set</span><span class="p">();</span>    <span class="c1">// 1 instruction on AVR</span>
 <span class="n">Led</span><span class="o">::</span><span class="n">reset</span><span class="p">();</span>  <span class="c1">// 3 instructions on Cortex-M</span>
@@ -451,7 +451,7 @@ names may need to be adapted.</p>
 
 
 <h3 id="buffered-uart">Buffered UART<a class="headerlink" href="#buffered-uart" title="Permanent link">#</a></h3>
-<div class="code"><pre><span class="k">using</span> <span class="n">Uart</span> <span class="o">=</span> <span class="n">Uart0</span><span class="p">;</span>
+<div class="code"><pre><span></span><span class="k">using</span> <span class="n">Uart</span> <span class="o">=</span> <span class="n">Uart0</span><span class="p">;</span>
 <span class="c1">// configure and initialize UART to 115.2kBaud</span>
 <span class="n">GpioOutputD1</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="n">Uart</span><span class="o">::</span><span class="n">Tx</span><span class="p">);</span>
 <span class="n">GpioInputD0</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="n">Uart</span><span class="o">::</span><span class="n">Rx</span><span class="p">);</span>
@@ -471,7 +471,7 @@ names may need to be adapted.</p>
 
 
 <h3 id="iostream">IOStream<a class="headerlink" href="#iostream" title="Permanent link">#</a></h3>
-<div class="code"><pre><span class="k">using</span> <span class="n">Uart</span> <span class="o">=</span> <span class="n">Uart0</span><span class="p">;</span>
+<div class="code"><pre><span></span><span class="k">using</span> <span class="n">Uart</span> <span class="o">=</span> <span class="n">Uart0</span><span class="p">;</span>
 <span class="c1">// Create a IODevice with the Uart</span>
 <span class="n">xpcc</span><span class="o">::</span><span class="n">IODeviceWrapper</span><span class="o">&lt;</span><span class="n">Uart</span><span class="o">&gt;</span> <span class="n">device</span><span class="p">;</span>
 <span class="n">xpcc</span><span class="o">::</span><span class="n">IOStream</span> <span class="n">stream</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
@@ -484,7 +484,7 @@ names may need to be adapted.</p>
 
 
 <h3 id="software-timers">Software Timers<a class="headerlink" href="#software-timers" title="Permanent link">#</a></h3>
-<div class="code"><pre><span class="k">using</span> <span class="n">Led</span> <span class="o">=</span> <span class="n">GpioOutputB0</span><span class="p">;</span>
+<div class="code"><pre><span></span><span class="k">using</span> <span class="n">Led</span> <span class="o">=</span> <span class="n">GpioOutputB0</span><span class="p">;</span>
 <span class="n">xpcc</span><span class="o">::</span><span class="n">Timeout</span> <span class="n">timeout</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>   <span class="c1">// 10s timeout</span>
 <span class="n">xpcc</span><span class="o">::</span><span class="n">PeriodicTimer</span> <span class="n">timer</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span> <span class="c1">// 250ms period</span>
 

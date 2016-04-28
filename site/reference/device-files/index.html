@@ -418,14 +418,14 @@ Examples include:</p>
 <p>The device files encode information about one or several very similar devices using a tree representation.
 The device tree root declares its device scope using OR'ed device identifier elements.</p>
 <p>Here is the <em>ATmega328</em> device family as an example:</p>
-<div class="code"><pre><span class="nt">&lt;device</span> <span class="na">platform=</span><span class="s">&quot;avr&quot;</span> <span class="na">family=</span><span class="s">&quot;atmega&quot;</span> <span class="na">name=</span><span class="s">&quot;48|88|168|328&quot;</span> <span class="na">size_id=</span><span class="s">&quot;4|8|16|32&quot;</span> <span class="na">type=</span><span class="s">&quot;a|none|p|pa&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;device</span> <span class="na">platform=</span><span class="s">&quot;avr&quot;</span> <span class="na">family=</span><span class="s">&quot;atmega&quot;</span> <span class="na">name=</span><span class="s">&quot;48|88|168|328&quot;</span> <span class="na">size_id=</span><span class="s">&quot;4|8|16|32&quot;</span> <span class="na">type=</span><span class="s">&quot;a|none|p|pa&quot;</span><span class="nt">&gt;</span>
   ...
 <span class="nt">&lt;/device&gt;</span>
 </pre></div>
 
 
 <p>This looks very similar for the <em>STM32F407</em> device family:</p>
-<div class="code"><pre><span class="nt">&lt;device</span> <span class="na">platform=</span><span class="s">&quot;stm32&quot;</span> <span class="na">family=</span><span class="s">&quot;f4&quot;</span> <span class="na">name=</span><span class="s">&quot;405|407|415|417&quot;</span> <span class="na">pin_id=</span><span class="s">&quot;i|r|v|z&quot;</span> <span class="na">size_id=</span><span class="s">&quot;e|g&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;device</span> <span class="na">platform=</span><span class="s">&quot;stm32&quot;</span> <span class="na">family=</span><span class="s">&quot;f4&quot;</span> <span class="na">name=</span><span class="s">&quot;405|407|415|417&quot;</span> <span class="na">pin_id=</span><span class="s">&quot;i|r|v|z&quot;</span> <span class="na">size_id=</span><span class="s">&quot;e|g&quot;</span><span class="nt">&gt;</span>
   ...
 <span class="nt">&lt;/device&gt;</span>
 </pre></div>
@@ -484,14 +484,14 @@ The device tree root declares its device scope using OR'ed device identifier ele
 </tbody>
 </table>
 <p>For example, all devices in the STM32F407 family have 192kB of RAM:</p>
-<div class="code"><pre><span class="nt">&lt;ram&gt;</span>196608<span class="nt">&lt;/ram&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;ram&gt;</span>196608<span class="nt">&lt;/ram&gt;</span>
 </pre></div>
 
 
 <p>However, each element may also declare its device scope by including device identifier attributes.
 To distinguish filterable device identifier attributes from declaration attributes, they must be prefixed with <code>device-</code>.</p>
 <p>For the ATmega328 family several RAM sizes exist depending on device name:</p>
-<div class="code"><pre><span class="nt">&lt;ram</span> <span class="na">device-name=</span><span class="s">&quot;48&quot;</span><span class="nt">&gt;</span>512<span class="nt">&lt;/ram&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;ram</span> <span class="na">device-name=</span><span class="s">&quot;48&quot;</span><span class="nt">&gt;</span>512<span class="nt">&lt;/ram&gt;</span>
 <span class="nt">&lt;ram</span> <span class="na">device-name=</span><span class="s">&quot;88|168&quot;</span><span class="nt">&gt;</span>1024<span class="nt">&lt;/ram&gt;</span>
 <span class="nt">&lt;ram</span> <span class="na">device-name=</span><span class="s">&quot;328&quot;</span><span class="nt">&gt;</span>2048<span class="nt">&lt;/ram&gt;</span>
 </pre></div>
@@ -499,7 +499,7 @@ To distinguish filterable device identifier attributes from declaration attribut
 
 <p>You are even able to use the value of these elements to further limit the scope of new elements.</p>
 <p>An example of this can be seen in the core driver file (discussed later), which uses the core element as device-scope:</p>
-<div class="code"><pre><span class="nt">&lt;template</span> <span class="na">core=</span><span class="s">&quot;cortex-m3|cortex-m4|cortex-m4f&quot;</span><span class="nt">&gt;</span>hard_fault_handler.cpp.in<span class="nt">&lt;/template&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;template</span> <span class="na">core=</span><span class="s">&quot;cortex-m3|cortex-m4|cortex-m4f&quot;</span><span class="nt">&gt;</span>hard_fault_handler.cpp.in<span class="nt">&lt;/template&gt;</span>
 </pre></div>
 
 
@@ -508,44 +508,44 @@ To distinguish filterable device identifier attributes from declaration attribut
 <p>The driver elements link the device hardware peripheral with a software implementation, which are found in <code>xpcc/architecture/platform/driver/</code>.
 Each driver is divided into several hardware dependend implementations.</p>
 <p>A selection of the most important drivers are:</p>
-<div class="code"><pre><span class="n">driver</span>
-<span class="o">|--</span> <span class="n">adc</span>
-<span class="o">|--</span> <span class="n">can</span>
-<span class="o">|--</span> <span class="n">clock</span>
-<span class="o">|--</span> <span class="n">fsmc</span>
-<span class="o">|--</span> <span class="n">gpio</span>
-<span class="o">|</span>   <span class="o">|--</span> <span class="n">at90_tiny_mega</span>
-<span class="o">|</span>   <span class="o">|--</span> <span class="n">generic</span>
-<span class="o">|</span>   <span class="err">`</span><span class="o">--</span> <span class="n">stm32</span>
-<span class="o">|--</span> <span class="n">i2c</span>
-<span class="o">|--</span> <span class="n">spi</span>
-<span class="o">|</span>   <span class="o">|--</span> <span class="n">at90_tiny_mega</span>
-<span class="o">|</span>   <span class="o">|--</span> <span class="n">at90_tiny_mega_uart</span>
-<span class="o">|</span>   <span class="o">|--</span> <span class="n">generic</span>
-<span class="o">|</span>   <span class="o">|--</span> <span class="n">stm32</span>
-<span class="o">|</span>   <span class="err">`</span><span class="o">--</span> <span class="n">stm32_uart</span>
-<span class="o">|--</span> <span class="n">timer</span>
-<span class="err">`</span><span class="o">--</span> <span class="n">uart</span>
+<div class="code"><pre><span></span>driver
+|-- adc
+|-- can
+|-- clock
+|-- fsmc
+|-- gpio
+|   |-- at90_tiny_mega
+|   |-- generic
+|   `-- stm32
+|-- i2c
+|-- spi
+|   |-- at90_tiny_mega
+|   |-- at90_tiny_mega_uart
+|   |-- generic
+|   |-- stm32
+|   `-- stm32_uart
+|-- timer
+`-- uart
 </pre></div>
 
 
 <p>Notice the <code>generic</code> folders. These are available for all platforms and are automatically included.</p>
 <p>Also, notice how there exist two implementations for <strong>spi</strong> for the <strong>stm32</strong> and <strong>at90_tiny_mega</strong> platform.
 One is for using the dedicated SPI hardware, and the other is for the UART hardware in SPI mode, however, both conform to the same SPI interface:</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;spi&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span> <span class="na">instances=</span><span class="s">&quot;1,2,3&quot;</span><span class="nt">/&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;spi&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span> <span class="na">instances=</span><span class="s">&quot;1,2,3&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;spi&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32_uart&quot;</span> <span class="na">instances=</span><span class="s">&quot;1,2,3,4,5,6&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 
 
 <p>Of course, drivers may also declare device scope. For the STM32F407 family, the FSMC is not available for pin-id <code>R</code> (=64 pins):</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">device-pin-id=</span><span class="s">&quot;i|v|z&quot;</span> <span class="na">type=</span><span class="s">&quot;fsmc&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span><span class="nt">/&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">device-pin-id=</span><span class="s">&quot;i|v|z&quot;</span> <span class="na">type=</span><span class="s">&quot;fsmc&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 
 
 <p>Any childen of a driver element will be available inside the driver instance template. Except for the reserved name <code>parameter</code>, there are no limitations on data structure or naming.</p>
 <p>For example, the GPIO driver needs to know which pins are available for the requested device (with the <code>gpio</code> element), and what alternate functions to connect to them (with the <code>af</code> element).</p>
 <p>This information is encoded as driver element children (here for the ATmega328 device family):</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;gpio</span> <span class="na">port=</span><span class="s">&quot;B&quot;</span> <span class="na">id=</span><span class="s">&quot;0&quot;</span> <span class="na">pcint=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
   ...
   <span class="nt">&lt;gpio</span> <span class="na">port=</span><span class="s">&quot;D&quot;</span> <span class="na">id=</span><span class="s">&quot;1&quot;</span> <span class="na">pcint=</span><span class="s">&quot;17&quot;</span><span class="nt">&gt;</span>
@@ -558,7 +558,7 @@ One is for using the dedicated SPI hardware, and the other is for the UART hardw
 
 
 <p>Of course, device scope may also be declared for individual pins and even alternate functions (here for the STM32F407 device family):</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;gpio</span> <span class="na">device-pin-id=</span><span class="s">&quot;i|v|z&quot;</span> <span class="na">port=</span><span class="s">&quot;E&quot;</span> <span class="na">id=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;af</span> <span class="na">id=</span><span class="s">&quot;12&quot;</span> <span class="na">peripheral=</span><span class="s">&quot;Fsmc&quot;</span> <span class="na">name=</span><span class="s">&quot;Nbl1&quot;</span><span class="nt">/&gt;</span>
@@ -583,7 +583,7 @@ One is for using the dedicated SPI hardware, and the other is for the UART hardw
 It does not specify which files are part of the implementation, and how multiple instances of a driver are created.</p>
 <p>This is done using the <code>driver.xml</code> file inside each driver implemenation.
 For the <code>at90_tiny_mega</code> GPIO driver it contains:</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;static&gt;</span>gpio_define.h<span class="nt">&lt;/static&gt;</span>
     <span class="nt">&lt;template&gt;</span>gpio.hpp.in<span class="nt">&lt;/template&gt;</span>
     ...
@@ -598,7 +598,7 @@ For the <code>at90_tiny_mega</code> GPIO driver it contains:</p>
 </ul>
 <p>Let's look at how to generate several driver instances using a driver file.
 Here is the <code>at90_tiny_meta</code> UART driver file:</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;template</span> <span class="na">instances=</span><span class="s">&quot;0,1,2,3&quot;</span> <span class="na">out=</span><span class="s">&quot;uart{{id}}.hpp&quot;</span><span class="nt">&gt;</span>uart.hpp.in<span class="nt">&lt;/template&gt;</span>
     ...
 <span class="nt">&lt;/driver&gt;</span>
@@ -607,7 +607,7 @@ Here is the <code>at90_tiny_meta</code> UART driver file:</p>
 
 <p>Here the driver file has the capability to generate the instances 0,1,2 and 3 of the UART classes, and write them into the format specified by the <code>out</code> attribute.
 The <code>instances</code> attribute can be used to generate different instances out of different template files as shown in the <code>stm32</code> UART driver file:</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;stm32&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;template</span> <span class="na">instances=</span><span class="s">&quot;1,2,3,6&quot;</span> <span class="na">out=</span><span class="s">&quot;usart_{{id}}.hpp&quot;</span><span class="nt">&gt;</span>uart.hpp.in<span class="nt">&lt;/template&gt;</span>
     <span class="nt">&lt;template</span> <span class="na">instances=</span><span class="s">&quot;4,5&quot;</span> <span class="na">out=</span><span class="s">&quot;uart_{{id}}.hpp&quot;</span><span class="nt">&gt;</span>uart.hpp.in<span class="nt">&lt;/template&gt;</span>
     ...
@@ -617,13 +617,13 @@ The <code>instances</code> attribute can be used to generate different instances
 
 <p>Note, that only the instances declared in the device file will actually be generated!</p>
 <p>So for the ATmega328, only UART instance 0 will be generated, since that has been declared in the device file:</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span> <span class="na">instances=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span> <span class="na">instances=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 
 
 <h3 id="custom-elements">Custom elements<a class="headerlink" href="#custom-elements" title="Permanent link">#</a></h3>
 <p>In the driver file, custom device-scoped elements may be declared, as in the <code>at90_tiny_mega</code> GPIO driver file:</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;gpio&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;notoggle</span> <span class="na">device-family=</span><span class="s">&quot;atmega&quot;</span> <span class="na">device-name=</span><span class="s">&quot;8|16|32|64|128|162|8515|8535&quot;</span><span class="nt">&gt;</span>True<span class="nt">&lt;/notoggle&gt;</span>
     <span class="nt">&lt;notoggle</span> <span class="na">device-family=</span><span class="s">&quot;attiny&quot;</span> <span class="na">device-name=</span><span class="s">&quot;26&quot;</span><span class="nt">&gt;</span>True<span class="nt">&lt;/notoggle&gt;</span>
@@ -642,7 +642,7 @@ There are currently three types available:</p>
 <li><code>enum</code>: semicolon-separated values</li>
 </ul>
 <p>All buffered UART implementations have two parameters named <code>tx_buffer</code> and <code>rx_buffer</code>, which are of type <code>int</code> and set the size of the atomic transmit and receive buffer.</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;uart&quot;</span> <span class="na">name=</span><span class="s">&quot;at90_tiny_mega&quot;</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;tx_buffer&quot;</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="na">min=</span><span class="s">&quot;1&quot;</span> <span class="na">max=</span><span class="s">&quot;254&quot;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/parameter&gt;</span>
     <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;rx_buffer&quot;</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="na">min=</span><span class="s">&quot;1&quot;</span> <span class="na">max=</span><span class="s">&quot;254&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/parameter&gt;</span>
@@ -652,7 +652,7 @@ There are currently three types available:</p>
 
 <p>Each UART instance receives their own two independent parameters with these default values.</p>
 <p>The <code>stm32</code> core driver features the other two types:</p>
-<div class="code"><pre><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;core&quot;</span> <span class="na">name=</span><span class="s">&quot;cortex&quot;</span><span class="nt">&gt;</span>
+<div class="code"><pre><span></span><span class="nt">&lt;driver</span> <span class="na">type=</span><span class="s">&quot;core&quot;</span> <span class="na">name=</span><span class="s">&quot;cortex&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;allocator&quot;</span> <span class="na">type=</span><span class="s">&quot;enum&quot;</span> <span class="na">values=</span><span class="s">&quot;newlib;block_allocator&quot;</span><span class="nt">&gt;</span>
         block_allocator
     <span class="nt">&lt;/parameter&gt;</span>
@@ -663,7 +663,7 @@ There are currently three types available:</p>
 
 
 <p>These parameter may be overwritten in either the device file, or in the <code>project.cfg</code> in the section <code>[parameters]</code>, which follows the naming scheme <code>type.name.instance.parameter</code>:</p>
-<div class="code"><pre><span class="p">[</span><span class="n">parameters</span><span class="p">]</span>
+<div class="code"><pre><span></span><span class="p">[</span><span class="n">parameters</span><span class="p">]</span>
 <span class="n">uart</span><span class="o">.</span><span class="n">at90_tiny_mega</span><span class="o">.</span><span class="mf">0.</span><span class="n">tx_buffer</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">uart</span><span class="o">.</span><span class="n">at90_tiny_mega</span><span class="o">.</span><span class="mf">0.</span><span class="n">rx_buffer</span> <span class="o">=</span> <span class="mi">100</span>
 </pre></div>

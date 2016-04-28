@@ -326,8 +326,8 @@ virtual machine</a> running Ubuntu
 <p>You only need to install <a href="https://www.virtualbox.org/wiki/Downloads">Virtualbox</a>
 and <a href="http://www.vagrantup.com/downloads.html">Vagrant</a> on your system, and can
 then easily boot the VM and ssh into it:</p>
-<div class="code"><pre>git clone https://github.com/roboterclubaachen/xpcc.git
-<span class="nb">cd </span>xpcc
+<div class="code"><pre><span></span>git clone https://github.com/roboterclubaachen/xpcc.git
+<span class="nb">cd</span> xpcc
 vagrant up
 vagrant ssh
 </pre></div>
@@ -340,37 +340,37 @@ This means you can use an editor of your choice to view and edit the source
 code on you native OS, and then use the virtual machine to compile it.</p>
 <p>So if you have an Arduino Uno lying around, you can then compile
 the <a href="https://github.com/roboterclubaachen/xpcc/blob/develop/examples/arduino_uno/basic/blink/main.cpp">LED blinking example</a>:</p>
-<div class="code"><pre><span class="nb">cd</span> /vagrant/examples/arduino_uno/basic/blink/
+<div class="code"><pre><span></span><span class="nb">cd</span> /vagrant/examples/arduino_uno/basic/blink/
 scons
 <span class="o">[</span>...<span class="o">]</span>
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     192 bytes <span class="o">(</span>0.6% used<span class="o">)</span>
+Program:     <span class="m">192</span> bytes <span class="o">(</span>0.6% used<span class="o">)</span>
 <span class="o">(</span>.data + .text<span class="o">)</span>
 
-Data:          0 bytes <span class="o">(</span>0.0% used<span class="o">)</span>
+Data:          <span class="m">0</span> bytes <span class="o">(</span>0.0% used<span class="o">)</span>
 <span class="o">(</span>.bss + .data + .noinit<span class="o">)</span>
 </pre></div>
 
 
 <p>You can compile every other example the same way.
 Here is the output of the STM32F4 Discovery Board <a href="https://github.com/roboterclubaachen/xpcc/blob/develop/examples/stm32f4_discovery/blink/main.cpp">LED blinking example</a>:</p>
-<div class="code"><pre><span class="nb">cd</span> /vagrant/examples/stm32f4_discovery/blink/
+<div class="code"><pre><span></span><span class="nb">cd</span> /vagrant/examples/stm32f4_discovery/blink/
 scons
 <span class="o">[</span>...<span class="o">]</span>
 Memory Usage
 ------------
 Device: stm32f407vg
 
-Program:    1980 bytes <span class="o">(</span>0.2% used<span class="o">)</span>
+Program:    <span class="m">1980</span> bytes <span class="o">(</span>0.2% used<span class="o">)</span>
 <span class="o">(</span>.data + .fastdata + .reset + .rodata + .text<span class="o">)</span>
 
-Data:       3352 bytes <span class="o">(</span>1.7% used<span class="o">)</span> <span class="o">=</span> 24 bytes static <span class="o">(</span>0.0%<span class="o">)</span> + 3328 bytes stack <span class="o">(</span>1.7%<span class="o">)</span>
+Data:       <span class="m">3352</span> bytes <span class="o">(</span>1.7% used<span class="o">)</span> <span class="o">=</span> <span class="m">24</span> bytes static <span class="o">(</span>0.0%<span class="o">)</span> + <span class="m">3328</span> bytes stack <span class="o">(</span>1.7%<span class="o">)</span>
 <span class="o">(</span>.bss + .data + .fastdata + .noinit + .stack<span class="o">)</span>
 
-Heap:     131060 bytes <span class="o">(</span>66.7% available<span class="o">)</span>
+Heap:     <span class="m">131060</span> bytes <span class="o">(</span>66.7% available<span class="o">)</span>
 <span class="o">(</span>.heap1 + .heap2 + .heap3<span class="o">)</span>
 </pre></div>
 
@@ -396,31 +396,31 @@ minimum required software for the xpcc build system:</p>
 </ul>
 <h3 id="installing-on-linux">Installing on Linux<a class="headerlink" href="#installing-on-linux" title="Permanent link">#</a></h3>
 <p>For Ubuntu 14.04LTS, these commands install the basic build system:</p>
-<div class="code"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span> <span class="n">python</span><span class="o">-</span><span class="n">jinja2</span> <span class="n">scons</span> <span class="n">git</span>
+<div class="code"><pre><span></span>sudo apt-get install python python-jinja2 scons git
 </pre></div>
 
 
 <p>Install the AVR toochain:</p>
-<div class="code"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gcc</span><span class="o">-</span><span class="n">avr</span> <span class="n">binutils</span><span class="o">-</span><span class="n">avr</span> <span class="n">avr</span><span class="o">-</span><span class="n">libc</span> <span class="n">avrdude</span>
+<div class="code"><pre><span></span>sudo apt-get install gcc-avr binutils-avr avr-libc avrdude
 </pre></div>
 
 
 <p>And the ARM toolchain as well:</p>
-<div class="code"><pre><span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="o">:</span><span class="n">team</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="n">arm</span><span class="o">-</span><span class="n">embedded</span><span class="o">/</span><span class="n">ppa</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gcc</span><span class="o">-</span><span class="n">arm</span><span class="o">-</span><span class="n">embedded</span> <span class="n">openocd</span>
+<div class="code"><pre><span></span>sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+sudo apt-get update
+sudo apt-get install gcc-arm-embedded openocd
 </pre></div>
 
 
 <p>To compile programs for x86 systems install the following packets:</p>
-<div class="code"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gcc</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">libboost</span><span class="o">-</span><span class="kr">thread</span><span class="o">-</span><span class="n">dev</span> \
-                     <span class="n">libboost</span><span class="o">-</span><span class="n">system</span><span class="o">-</span><span class="n">dev</span> <span class="n">libasio</span><span class="o">-</span><span class="n">dev</span>
+<div class="code"><pre><span></span>sudo apt-get install gcc build-essential libboost-thread-dev \
+                     libboost-system-dev libasio-dev
 </pre></div>
 
 
 <p>For active xpcc development install these packets too:</p>
-<div class="code"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">recommends</span> <span class="n">install</span> <span class="n">doxygen</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">lxml</span>
+<div class="code"><pre><span></span>sudo apt-get --no-install-recommends install doxygen
+pip install --user lxml
 </pre></div>
 
 
@@ -428,33 +428,33 @@ minimum required software for the xpcc build system:</p>
 <h3 id="installing-on-os-x">Installing on OS X<a class="headerlink" href="#installing-on-os-x" title="Permanent link">#</a></h3>
 <p>First install <a href="http://mxcl.github.com/homebrew/"><code>homebrew</code></a>, a great packet
 manager for OS X, then use it to install the minimum build system:</p>
-<div class="code"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">python</span> <span class="n">scons</span> <span class="n">git</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">jinja2</span>
+<div class="code"><pre><span></span>brew install python scons git
+pip install --user jinja2
 </pre></div>
 
 
 <p>Install the AVR toochain:</p>
-<div class="code"><pre><span class="n">brew</span> <span class="n">tap</span> <span class="n">larsimmisch</span><span class="o">/</span><span class="n">avr</span>
-<span class="n">brew</span> <span class="n">install</span> <span class="n">avr</span><span class="o">-</span><span class="n">libc</span> <span class="n">avrdude</span>
+<div class="code"><pre><span></span>brew tap larsimmisch/avr
+brew install avr-libc avrdude
 </pre></div>
 
 
 <p>And the ARM toolchain as well:</p>
-<div class="code"><pre><span class="n">brew</span> <span class="n">tap</span> <span class="n">ARMmbed</span><span class="o">/</span><span class="n">homebrew</span><span class="o">-</span><span class="n">formulae</span>
-<span class="n">brew</span> <span class="n">install</span> <span class="n">arm</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="n">eabi</span><span class="o">-</span><span class="n">gcc</span>
+<div class="code"><pre><span></span>brew tap ARMmbed/homebrew-formulae
+brew install arm-none-eabi-gcc
 </pre></div>
 
 
 <p>To program and debug your ARM Cortex-M device, you need to install the latest
 <a href="http://openocd.org">OpenOCD</a> version:</p>
-<div class="code"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">openocd</span> <span class="o">--</span><span class="n">HEAD</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">ft2232_libftdi</span> \
-                     <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">jlink</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">stlink</span>
+<div class="code"><pre><span></span>brew install openocd --HEAD --enable-ft2232_libftdi \
+                     --enable-jlink --enable-stlink
 </pre></div>
 
 
 <p>For active xpcc development install these packets too:</p>
-<div class="code"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">doxygen</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">lxml</span>
+<div class="code"><pre><span></span>brew install doxygen
+pip install --user lxml
 </pre></div>
 
 
