@@ -9,19 +9,19 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
       
-        <title>API reference - xpcc microcontroller framework</title>
+        <title>Testing - xpcc microcontroller framework</title>
       
       
       
-        <link rel="canonical" href="http://docs.xpcc.io/reference/api/">
+        <link rel="canonical" href="http://docs.xpcc.io/guide/testing/">
       
       
         <meta name="author" content="Roboterclub Aachen e.V.">
       
     
-    <meta property="og:url" content="http://docs.xpcc.io/reference/api/">
+    <meta property="og:url" content="http://docs.xpcc.io/guide/testing/">
     <meta property="og:title" content="xpcc microcontroller framework">
-    <meta property="og:image" content="http://docs.xpcc.io/reference/api//../../images/logo.svg">
+    <meta property="og:image" content="http://docs.xpcc.io/guide/testing//../../images/logo.svg">
     <meta name="apple-mobile-web-app-title" content="xpcc microcontroller framework">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -99,12 +99,12 @@
           <span class="path">
             
               
-                Reference <i class="icon icon-link"></i>
+                Guide <i class="icon icon-link"></i>
               
             
           </span>
         
-        API reference
+        Testing
       </div>
     </div>
     
@@ -221,7 +221,7 @@
       
         
   <li>
-    <a class="" title="Getting started" href="../../guide/getting-started/">
+    <a class="" title="Getting started" href="../getting-started/">
       Getting started
     </a>
     
@@ -230,9 +230,60 @@
       
         
   <li>
-    <a class="" title="Testing" href="../../guide/testing/">
+    <a class="current" title="Testing" href="./">
       Testing
     </a>
+    
+      
+        
+      
+      
+        <ul>
+          
+            <li class="anchor">
+              <a title="Manual tests" href="#manual-tests">
+                Manual tests
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Manual integration tests" href="#manual-integration-tests">
+                Manual integration tests
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Continous integration" href="#continous-integration">
+                Continous integration
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Release test" href="#release-test">
+                Release test
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Unit tests on hosted" href="#unit-tests-on-hosted">
+                Unit tests on hosted
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Unit tests on target" href="#unit-tests-on-target">
+                Unit tests on target
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Conclusions and Outlook" href="#conclusions-and-outlook">
+                Conclusions and Outlook
+              </a>
+            </li>
+          
+        </ul>
+      
     
   </li>
 
@@ -248,21 +299,16 @@
       
         
   <li>
-    <a class="current" title="API reference" href="./">
+    <a class="" title="API reference" href="../../reference/api/">
       API reference
     </a>
-    
-      
-        
-      
-      
     
   </li>
 
       
         
   <li>
-    <a class="" title="Build system" href="../build-system/">
+    <a class="" title="Build system" href="../../reference/build-system/">
       Build system
     </a>
     
@@ -271,7 +317,7 @@
       
         
   <li>
-    <a class="" title="Device files" href="../device-files/">
+    <a class="" title="Device files" href="../../reference/device-files/">
       Device files
     </a>
     
@@ -314,26 +360,83 @@
         <div class="wrapper">
           
           <style scoped>img.latex-inline { vertical-align: middle; }</style>
-<style scoped>svg.diagram{display:block;font-family:'Ubuntu Mono';font-size:14px;text-align:center;stroke-linecap:round;stroke-width:1.5px;}.md</style><h1 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Permanent link">#</a></h1>
-<p>xpcc is a relatively large framework with many APIs and advanced concepts.
-We are annotating our APIs using Doxygen and are trying to provide conceptual
-design documentation on <a href="http://blog.xpcc.io">our project blog</a>.
-However, this is a slow and difficult process, and the results are not perfect.</p>
-<p>The most complete and most up-to-date API documentation is definitely the</p>
+<style scoped>svg.diagram{display:block;font-family:'Ubuntu Mono';font-size:14px;text-align:center;stroke-linecap:round;stroke-width:1.5px;}.md</style><h1 id="testing-xpcc">Testing xpcc<a class="headerlink" href="#testing-xpcc" title="Permanent link">#</a></h1>
+<p>xpcc has seen some significant changes in the past and the level of
+maturity varies between "does not compile" and "very reliable".</p>
+<p>There are different explicit and implicit test strategies in place for
+testing xpcc.</p>
+<h2 id="manual-tests">Manual tests<a class="headerlink" href="#manual-tests" title="Permanent link">#</a></h2>
+<p>When some new drivers were developed the developer often (not always!) tests the new driver with some real hardware (eval board) and a real peripheral at least on one platform with one compiler. The results on different platforms (AVR instead of ARM) and different hardware (eval board) may vary, although by design should not.</p>
+<p>Mostly, these tests are only conducted when the development takes place.</p>
+<h2 id="manual-integration-tests">Manual integration tests<a class="headerlink" href="#manual-integration-tests" title="Permanent link">#</a></h2>
+<p>xpcc is the major platform for all programming efforts of the Robot Association Aachen (Roboterclub Aachen, RCA) at RWTH Aachen University. Some parts of xpcc run on real robots in real competitions. The maturity of these parts at least for RCA's hardware can be expected to be very high. This includes:</p>
 <ul>
-<li><a href="http://xpcc.io/api/modules.html">Doxygen API reference</a>.</li>
+<li>The XPCC communication protocol</li>
+<li>The target platforms used in the specific season, e.g.</li>
+<li>STM32F407 in seasons 2014ff, but only under very specific test conditions, e.g.<ul>
+<li>external 8 MHz oscillator</li>
+<li>core running at 168 MHz</li>
+<li>only using UART0, not UART1</li>
 </ul>
-<p>Unfortunately the generated HAL for our many devices confuses Doxygen.
-We therefore chose to only include the HAL API for <code>ATtiny85</code>, the <code>ATmega328p</code>
-and the <code>STM32F407vg</code> online.
-The rest of the xpcc API is documented without limitations.</p>
-<!-- ## Your device
+</li>
+<li>the hardware drivers build in the robots (e.g. CAN, VL6180, ...)</li>
+</ul>
+<p>The test coverage is unknown but the system has proved to be reliable under conditions of the competition. Nevertheless, some unforseen problems may still occur at any time. Always fasten your seatbelt.</p>
+<h2 id="continous-integration">Continous integration<a class="headerlink" href="#continous-integration" title="Permanent link">#</a></h2>
+<p>xpcc on Github uses TravisCI for CI. A set of test jobs is run with every commit. These include release tests and unit tests.</p>
+<h2 id="release-test">Release test<a class="headerlink" href="#release-test" title="Permanent link">#</a></h2>
+<p>xpcc covers many different platforms and a huge number of chips. To make sure that at the code at least compiles for all platforms a TravisCI test job is in place as part of the Continous Integration. This only tests compiling on the TravisCI Linux virtual machine. Compiling may fail with different compilers and on different hosts.</p>
+<p>To check if simple programs compile for a large set of microcontrollers call</p>
+<div class="code"><pre><span></span>scons check=devices
+</pre></div>
 
-We recommend that you generate the documentation for your own project locally.
-To do so, simply execute our documentation command `scons doc` inside your project folder.
-This will build the xpcc documentation with your specific project configuration in `build/doc/`. -->
 
-<p>If you are stuck, don't hesitate to <a href="https://mailman.rwth-aachen.de/mailman/listinfo/xpcc-dev">send us an email with your questions</a>.</p>
+<p>The test programs that are compiled are located in <code>xpcc/release/tests</code> and differ for each platform.</p>
+<p>To compile all examples from <code>xpcc/examples</code>, run</p>
+<div class="code"><pre><span></span>scons check=examples
+</pre></div>
+
+
+<p>This does <strong>not</strong> include actually running the examples.</p>
+<p>To compile device checks and examples simply run</p>
+<div class="code"><pre><span></span>scons check
+</pre></div>
+
+
+<h2 id="unit-tests-on-hosted">Unit tests on hosted<a class="headerlink" href="#unit-tests-on-hosted" title="Permanent link">#</a></h2>
+<p>Some parts of xpcc which do not access hardware directly (like communication protocols, mathematical and logical functions) are tested with a xpcc specific unit test framework.</p>
+<p>Tests can be found in the <code>test</code> direcotry of each component, e.g. <code>xpcc/src/xpcc/math/filter/test</code>. These test check for logic errors in the components. They are compiled for the targed <code>hosted</code> (your computer) and run to check the expected result against a predifined and expected result. The test coverage of these tests vary.</p>
+<p>Every new software component is expected to have these checks in place when contributed to xpcc.</p>
+<p>Unit tests for hosted can be run with</p>
+<div class="code"><pre><span></span>scons unittest
+</pre></div>
+
+
+<h2 id="unit-tests-on-target">Unit tests on target<a class="headerlink" href="#unit-tests-on-target" title="Permanent link">#</a></h2>
+<p>A very unique feature of the xpcc unit test framework is that the unit tests can be run on the target platform. This matters because in most cases xpcc is used for cross compiling and the target platform differs at least in one of the following features:</p>
+<ul>
+<li>compiler</li>
+<li>gcc/clang for x86 vs. arm-none-eabi-gcc vs. avr-gcc</li>
+<li>word size</li>
+<li>64 bits vs. 8 bits or 32 bits</li>
+<li>presence of a FPU</li>
+<li>i7 vs. AVR vs. ARM Cortex-M4f</li>
+</ul>
+<p>To cross-compile the set of unit tests for STM32 run</p>
+<div class="code"><pre><span></span>scons unittest target=stm32
+</pre></div>
+
+
+<p>This will create a binary <code>xpcc/build/unittest_stm32/executable.elf</code> that can be manually programmed to STM32 F4 Discovery board. After reset, the unit tests are run and the result of the test is echoed to the serial console (USART2 in case of the STM32 F4 Discovery Board, see runner.cpp for details). The test runner is created from <code>xpcc/templates/unittest/runner_stm32.cpp.in</code> and located in <code>xpcc/build/unittest_stm32/runner.cpp</code></p>
+<p>These tests are not automatically run and must therefore be run and interpreted manually from time to time.</p>
+<p>All platform and hardware drivers still lack these kind of tests, including external stimuli and waveform verification.</p>
+<div class="code"><pre><span></span>scons unittest target=atmega
+scons unittest target=atxmega
+</pre></div>
+
+
+<h2 id="conclusions-and-outlook">Conclusions and Outlook<a class="headerlink" href="#conclusions-and-outlook" title="Permanent link">#</a></h2>
+<p>xpcc has a varity of testing strategies in place, is being used on a regular basis by Roboterclub Aachen e. V., receives updates and bug fixes frequently and test coverage is constantly improved.</p>
           <aside class="copyright" role="note">
             
               Copyright &copy 2016 Roboterclub Aachen e.V. &ndash;
@@ -352,7 +455,7 @@ This will build the xpcc documentation with your specific project configuration 
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
-        <a href="../../guide/testing/" title="Testing">
+        <a href="../getting-started/" title="Getting started">
           <span class="direction">
             Previous
           </span>
@@ -362,7 +465,7 @@ This will build the xpcc documentation with your specific project configuration 
             </div>
             <div class="stretch">
               <div class="title">
-                Testing
+                Getting started
               </div>
             </div>
           </div>
@@ -371,14 +474,14 @@ This will build the xpcc documentation with your specific project configuration 
     </div>
     <div class="next">
       
-        <a href="../build-system/" title="Build system">
+        <a href="../../reference/api/" title="API reference">
           <span class="direction">
             Next
           </span>
           <div class="page">
             <div class="stretch">
               <div class="title">
-                Build system
+                API reference
               </div>
             </div>
             <div class="button button-next" role="button" aria-label="Next">
